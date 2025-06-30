@@ -1,3 +1,32 @@
+# DFYNE Front-End Developer Test – Variant Picker
+
+This Shopify snippet replicates the color swatch UI from DFYNE's product page.
+
+## What I Did
+
+- Used Shopify Dawn theme as base
+- Created a custom `variant-picker.liquid` snippet that renders color swatches using `product.options_with_values`
+- Added responsive styling and selection behavior with CSS
+- Used JavaScript to simulate variant switching by updating the hidden `variantId` input and applying `.selected` styles
+
+## Files Modified
+
+- `snippets/variant-picker.liquid`
+- `assets/base.css`
+- `assets/global.js`
+- `sections/main-product.liquid` (inside `when 'variant_picker'` block)
+
+## Notes
+
+- This does not rely on a live Shopify store
+- Variant selection is simulated using `data-variant-id`
+
+
+
+
+
+
+
 # Dawn
 
 [![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain)

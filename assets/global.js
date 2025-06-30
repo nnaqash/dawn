@@ -1330,3 +1330,26 @@ class CartPerformance {
     );
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const swatches = document.querySelectorAll(".color-swatch");
+
+  swatches.forEach((swatch) => {
+    swatch.addEventListener("click", () => {
+      // Remove 'selected' class from all swatches
+      swatches.forEach((s) => s.classList.remove("selected"));
+
+      // Add 'selected' class to the one clicked
+      swatch.classList.add("selected");
+
+      // Update hidden variant input if it exists
+      const variantId = swatch.dataset.variantId;
+      const variantInput = document.querySelector('input[name="id"]');
+      if (variantInput) {
+        variantInput.value = variantId;
+      }
+
+      console.log("Selected variant ID:", variantId);
+    });
+  });
+});

@@ -1,0 +1,46 @@
+<!-- snippets/variant-picker.liquid -->
+
+{%- comment -%}
+  Variant Picker for color swatches.
+  This file creates one button per color using Shopify product data.
+  We'll style it with CSS and add click functionality with JavaScript.
+{%- endcomment -%}
+
+{%- comment -%}
+  Step 1: Find the product option named "Color"
+{%- endcomment -%}
+{% assign color_option = product.options_with_values | where: "name", "Color" | first %}
+
+{%- comment -%}
+  Step 2: Only show swatches if the product has a color option
+{%- endcomment -%}
+{% if color_option %}
+  <div class="custom-variant-picker">
+    
+    {%- comment -%}
+      Step 3: Loop through each color like Red, Black, etc.
+    {%- endcomment -%}
+    {% for color_value in color_option.values %}
+
+      {%- comment -%}
+        Step 4: Find the matching variant for this color
+        (We assume "Color" is option1 on the product)
+      {%- endcomment -%}
+      {% assign variant = product.variants | where: "option1", color_value | first %}
+
+      {%- comment -%}
+        Step 5: Make a button for the color
+        - data-color: used for styling
+        - data-variant-id: used later in JS for switching
+      {%- endcomment -%}
+      <button
+        class="color-swatch"
+        type="button"
+        aria-label="{{ color_value }}"
+        data-color="{{ color_value | downcase }}"
+        data-variant-id="{{ variant.id }}">
+      </button>
+
+    {% endfor %}
+  </div>
+{% endif %}
